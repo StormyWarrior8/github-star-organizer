@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.2.0'
 
+gem 'devise'
+
 group :development do
   gem 'spring'
   gem 'pry-rails'
