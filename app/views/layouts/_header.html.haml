@@ -1,0 +1,6 @@
+- if current_user
+  = current_user.name
+  |
+  = link_to 'Logout', destroy_user_session_path, data: { method: :delete }
+- else
+  = link_to "Github Auth", user_omniauth_authorize_path(:github)

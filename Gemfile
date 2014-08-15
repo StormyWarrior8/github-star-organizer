@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'devise'
+gem 'omniauth-github'
 
 group :development do
   gem 'spring'
