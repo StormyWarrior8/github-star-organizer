@@ -1,6 +1,14 @@
-- if current_user
-  = current_user.name
-  |
-  = link_to 'Logout', destroy_user_session_path, data: { method: :delete }
-- else
-  = link_to "Github Auth", user_omniauth_authorize_path(:github)
+.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      - if current_user
+        = current_user.name
+        |
+        = link_to 'Logout', destroy_user_session_path, data: { method: :delete }, class: "navbar-brand"
+      - else
+        = link_to "Github Auth", user_omniauth_authorize_path(:github), class: "navbar-brand"
