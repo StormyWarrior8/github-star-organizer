@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
     :validatable, :omniauthable, omniauth_providers: %i(github)
 
+  ## Associations
+  has_many :stared_repos
+
   ## Validations
   validates :name, presence: true
 
