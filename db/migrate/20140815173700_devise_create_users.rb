@@ -32,6 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Omniauthable
       t.string :github_uid
+      t.string :github_username
 
       ## Other
       t.string :name
