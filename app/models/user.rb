@@ -16,8 +16,6 @@ class User < ActiveRecord::Base
   end
 
 
-  has_many :stared_repos
-
   ## Class methods
   def self.from_omniauth auth
     provider = auth[:provider]

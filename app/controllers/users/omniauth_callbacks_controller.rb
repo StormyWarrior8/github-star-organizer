@@ -2,7 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     @user = User.from_omniauth request.env["omniauth.auth"]
     if @user.persisted?
-      RepoSyncWorker.perform_async @user.id, request.env["omniauth.auth"][:credentials][:token]
+      RepoSyncWorker.perform_async @user.id
       sign_in_and_redirect @user, event: :authentication
       set_flash_message :notice, :success, kind: "Github" if is_navigational_format?
     else
