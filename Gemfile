@@ -16,6 +16,7 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'sidekiq'
 gem 'octokit'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'spring'
