@@ -9,6 +9,5 @@
     = render 'layouts/header'
     .container
       .container-wrapper
-        = if content_for? :title
-          = yield :title
+        = yield :title if content_for? :title
         = yield
