@@ -26,4 +26,5 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'github-pivotal-flow'
+  gem 'sinatra', '>= 1.3.0', require: nil # for sidekiq monitoring
 end
