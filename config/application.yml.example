@@ -1,8 +1,8 @@
 defaults: &defaults
   api_app:
     github:
-      key: e8eafc51744bcef04c15
-      secret: e651e0bb204af6609627c871a0ca0d65c4007b93
+      client_id: e8eafc51744bcef04c15
+      client_secret: e651e0bb204af6609627c871a0ca0d65c4007b93
 
 development:
   <<: *defaults

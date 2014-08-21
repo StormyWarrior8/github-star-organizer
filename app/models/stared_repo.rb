@@ -17,6 +17,6 @@ class StaredRepo < ActiveRecord::Base
 
   private
     def parse_readme_html
-      self.readme_html = Octokit.readme(self.full_name, accept: 'application/vnd.github.html') rescue ''
+      self.readme_html = Github::ApiClient.new.readme_html(self.full_name)
     end
 end

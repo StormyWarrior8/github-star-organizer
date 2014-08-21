@@ -27,4 +27,10 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+
+  ## Instance methods
+  def github_api
+    @github_api ||= Github::UserApiClient.new self.github_username
+  end
 end
