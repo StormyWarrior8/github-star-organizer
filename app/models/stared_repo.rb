@@ -12,6 +12,9 @@ class StaredRepo < ActiveRecord::Base
   ## Callbacks
   before_save :parse_readme_html
 
+  ##taggable
+  acts_as_taggable_on :tags
+
   private
     def parse_readme_html
       self.readme_html = Octokit.readme(self.full_name, accept: 'application/vnd.github.html') rescue ''

@@ -8,7 +8,7 @@ class RepoSyncWorker
     Octokit.user(user.github_username).rels[:starred].get.data.each do |repo_attrs|
       stared_repo = user.stared_repos.where(remote_id: repo_attrs[:id]).first_or_initialize
       stared_repo.assign_attributes repo_attrs.to_h.slice(*repo_attrs_for_save)
-      stared_repo.save.inspect
+      stared_repo.save
     end
   end
 end
