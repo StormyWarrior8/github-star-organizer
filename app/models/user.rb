@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     :validatable, :omniauthable, omniauth_providers: %i(github)
 
   ## Associations
-  has_many :stared_repos
+  has_many :stared_repos, dependent: :destroy
 
   ## Validations
   with_options presence: true do |pt|
@@ -26,11 +26,5 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.password = Devise.friendly_token[0,20]
     end
-  end
-
-
-  ## Instance methods
-  def github_api
-    @github_api ||= Github::UserApiClient.new self.github_username
   end
 end
