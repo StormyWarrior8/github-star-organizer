@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820163660) do
+ActiveRecord::Schema.define(version: 20140822122415) do
 
   create_table "stared_repos", force: true do |t|
     t.integer  "user_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140820163660) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sync_job_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,5 +1,8 @@
 = content_for :title do
-  %h1 Starred repositories
+  %h1
+    Starred repositories
+    = link_to sync_path, data: { remote: true, method: :put } do
+      %span.glyphicon.glyphicon-refresh
 
 %ul.list-group
   = render @stared_repos

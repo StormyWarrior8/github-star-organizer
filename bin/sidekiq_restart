@@ -1,0 +1,2 @@
+cat tmp/pids/sidekiq.pid | xargs sudo kill -9
+bundle exec sidekiq -C config/sidekiq.yml
