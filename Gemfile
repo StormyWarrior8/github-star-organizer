@@ -14,9 +14,11 @@ gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'devise'
 gem 'omniauth-github'
-gem 'sidekiq'
 gem 'octokit'
 gem 'acts-as-taggable-on'
+
+gem 'sidekiq', '~> 3.0'
+gem 'sidekiq-status', '~> 0.5.0'
 
 group :development do
   gem 'spring'
