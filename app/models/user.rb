@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  ## Callbacks
+  after_create :start_sync_job
+
 
   ## Class methods
   def self.from_omniauth auth
@@ -25,6 +28,14 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.name = auth.info.name
       user.password = Devise.friendly_token[0,20]
+    end
+  end
+
+
+  ## Instance methods
+  def start_sync_job
+    unless Sidekiq::Status::status(self.sync_job_id).in?(%i[queued working])
+      self.update_column :sync_job_id, RepoSyncWorker.perform_async(self.id)
     end
   end
 end
