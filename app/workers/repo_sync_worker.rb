@@ -1,6 +1,8 @@
 class RepoSyncWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: :repo_sync, retry: false
+
   def perform user_id
     user = User.find(user_id)
     repo_attrs_for_save = %i(name full_name description homepage ssh_url html_url stargazers_count pushed_at)
