@@ -7,7 +7,7 @@
     = csrf_meta_tags
   %body
     = render 'layouts/header'
+    .header-spacer
     .container
-      .container-wrapper
-        = yield :title if content_for? :title
-        = yield
+      = yield :title if content_for? :title
+      = yield
