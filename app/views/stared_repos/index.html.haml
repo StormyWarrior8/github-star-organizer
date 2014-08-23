@@ -3,12 +3,15 @@
     Starred repositories
     = link_to sync_path, data: { remote: true, method: :put } do
       %span.glyphicon.glyphicon-refresh
-    %input{:type=>"text", :id=>"tags", :value=>"foo,bar,baz"}
+    %input{:type=>"text", :id=>"tags"}
 %ul.list-group
   = render @stared_repos
 
 
 :javascript
     $(document).ready( function() {
-     $('#tags').tagsInput();
+     $('#tags').tagsInput({
+       autocomplete_url:'/auto_complete_tags',
+       autocomplete:{selectFirst:true,width:'50px',autoFill:true}
+     });
     } );

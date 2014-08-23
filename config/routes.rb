@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 
     put 'sync', to: 'stared_repos#sync'
+    get 'auto_complete_tags', to: 'stared_repos#auto_complete_tags'
     root 'stared_repos#index', as: :user_root
   end
 
