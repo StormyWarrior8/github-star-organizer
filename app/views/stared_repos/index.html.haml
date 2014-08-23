@@ -3,6 +3,12 @@
     Starred repositories
     = link_to sync_path, data: { remote: true, method: :put } do
       %span.glyphicon.glyphicon-refresh
-
+    %input{:type=>"text", :id=>"tags", :value=>"foo,bar,baz"}
 %ul.list-group
   = render @stared_repos
+
+
+:javascript
+    $(document).ready( function() {
+     $('#tags').tagsInput();
+    } );
