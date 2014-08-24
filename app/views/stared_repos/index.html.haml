@@ -3,5 +3,6 @@
     Starred repositories
     = link_to sync_stared_repos_path, data: { remote: true, method: :put } do
       %span.glyphicon.glyphicon-refresh
-%ul#stared-repos.list-group{ data: { autocomplete_url: tag_list_stared_repos_path } }
+
+%ul#stared-repos.list-group
   = render @stared_repos
