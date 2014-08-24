@@ -10,7 +10,7 @@ class StaredRepo < ActiveRecord::Base
   end
 
   ## Callbacks
-  before_save :parse_readme_html
+  after_save :parse_readme_html
 
   ##taggable
   acts_as_taggable_on :tags
@@ -21,6 +21,6 @@ class StaredRepo < ActiveRecord::Base
 
   private
     def parse_readme_html
-      self.readme_html = Octokit::Client.new.readme(self.full_name, accept: 'application/vnd.github.v3.html')
+      LoadReadmeWorker.perform_async(self.id)
     end
 end
