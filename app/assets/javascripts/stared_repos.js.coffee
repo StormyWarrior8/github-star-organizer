@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+  sendTagForm = (value)-> $(this).closest('form').submit()
+
+  $('.repo-tags').tagsInput
+    autocomplete_url: $('#stared-repos').data('autocomplete-url'),
+    height: '45px',
+    width: '450px',
+    onAddTag: sendTagForm,
+    onRemoveTag: sendTagForm

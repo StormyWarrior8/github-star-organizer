@@ -1,4 +1,7 @@
 class StaredRepo < ActiveRecord::Base
+  ## Third-party extension
+  acts_as_taggable_on :tags
+
   ## Associations
   belongs_to :user
 
@@ -10,13 +13,18 @@ class StaredRepo < ActiveRecord::Base
   end
 
   ## Callbacks
-  before_save :parse_readme_html
+  before_create :parse_readme_html
 
-  ##taggable
-  acts_as_taggable_on :tags
+  ## Attributes
+  attr_accessor :user_tag_list
 
-  def get_searched_tags term
-    tag_list.select{ |tag| tag.match(/^#{term}/) }
+
+  def user_tag_list
+    self.tags.map(&:name).join(', ')
+  end
+
+  def user_tag_list= value
+    self.user.tag(self, with: value, on: :tags)
   end
 
   private

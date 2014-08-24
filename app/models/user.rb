@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   ## Third-party extension
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
     :validatable, :omniauthable, omniauth_providers: %i(github)
+  acts_as_tagger
 
   ## Associations
   has_many :stared_repos, dependent: :destroy
@@ -37,12 +38,5 @@ class User < ActiveRecord::Base
     unless Sidekiq::Status::status(self.sync_job_id).in?(%i[queued working])
       self.update_column :sync_job_id, RepoSyncWorker.perform_async(self.id)
     end
-  end
-
-  def search_for_tags term
-    arr = []
-    arr << stared_repos.map{ |rep| rep.get_searched_tags(term)}
-    hash = Hash[arr.flatten.uniq.each_with_index.map { |v,i| [i,v] }]
-    hash.to_json
   end
 end

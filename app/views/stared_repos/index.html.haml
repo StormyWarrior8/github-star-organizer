@@ -1,24 +1,7 @@
 = content_for :title do
   %h1
     Starred repositories
-    = link_to sync_path, data: { remote: true, method: :put } do
+    = link_to sync_stared_repos_path, data: { remote: true, method: :put } do
       %span.glyphicon.glyphicon-refresh
-    %input{:type=>"text", :id=>"tags"}
-%ul.list-group
+%ul#stared-repos.list-group{ data: { autocomplete_url: tag_list_stared_repos_path } }
   = render @stared_repos
-
-
-:javascript
-    $(document).ready( function() {
-     $('#tags').tagsInput({
-       autocomplete_url:'/auto_complete_tags',
-       autocomplete:{selectFirst:true,width:'50px',autoFill:true},
-       height:'50px',
-       width:'300px',
-       'interactive':true,
-       'defaultText':'add a tag'
-       //'onAddTag':TODO - add tag in database
-       //'onRemoveTag':TODO - remove tag from database
-
-     });
-    } );
