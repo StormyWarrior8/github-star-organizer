@@ -8,8 +8,13 @@ Rails.application.routes.draw do
     #TODO: configure for production later
     mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 
-    put 'sync', to: 'stared_repos#sync'
-    get 'auto_complete_tags', to: 'stared_repos#auto_complete_tags'
+    resources :stared_repos, only: [:update] do
+      collection do
+        get :tag_list
+        put :sync
+      end
+    end
+
     root 'stared_repos#index', as: :user_root
   end
 

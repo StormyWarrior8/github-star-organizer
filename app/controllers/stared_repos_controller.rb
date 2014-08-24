@@ -1,6 +1,12 @@
 class StaredReposController < ApplicationController
   def index
-    @stared_repos = current_user.stared_repos
+    @stared_repos = current_user.stared_repos.includes(:tags)
+  end
+
+  def update
+    @stared_repo = current_user.stared_repos.find(params[:id])
+    @stared_repo.update(params.require(:stared_repo).permit(:user_tag_list))
+    render nothing: true
   end
 
   def sync
@@ -8,9 +14,7 @@ class StaredReposController < ApplicationController
     render nothing: true
   end
 
-  def auto_complete_tags
-    term = params[:term]
-    searched_tags = current_user.search_for_tags term
-    render json: searched_tags
+  def tag_list
+    render json: current_user.owned_tags.where("name LIKE '%#{params[:term]}%'").map(&:name)
   end
 end
