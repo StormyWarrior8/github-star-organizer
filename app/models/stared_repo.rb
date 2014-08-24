@@ -15,6 +15,10 @@ class StaredRepo < ActiveRecord::Base
   ##taggable
   acts_as_taggable_on :tags
 
+  def get_searched_tags term
+    tag_list.select{ |tag| tag.match(/^#{term}/) }
+  end
+
   private
     def parse_readme_html
       self.readme_html = Octokit::Client.new.readme(self.full_name, accept: 'application/vnd.github.v3.html')

@@ -38,4 +38,11 @@ class User < ActiveRecord::Base
       self.update_column :sync_job_id, RepoSyncWorker.perform_async(self.id)
     end
   end
+
+  def search_for_tags term
+    arr = []
+    arr << stared_repos.map{ |rep| rep.get_searched_tags(term)}
+    hash = Hash[arr.flatten.uniq.each_with_index.map { |v,i| [i,v] }]
+    hash.to_json
+  end
 end
