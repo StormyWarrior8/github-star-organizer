@@ -17,6 +17,7 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'octokit'
 gem 'acts-as-taggable-on'
+gem 'jbuilder'
 
 gem 'sidekiq', '~> 3.0'
 gem 'sidekiq-status', '~> 0.5.0'

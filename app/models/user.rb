@@ -34,9 +34,11 @@ class User < ActiveRecord::Base
 
 
   ## Instance methods
+  def current_sync_job?
+    Sidekiq::Status::status(self.sync_job_id).in?(%i[queued working])
+  end
+
   def start_sync_job
-    unless Sidekiq::Status::status(self.sync_job_id).in?(%i[queued working])
-      self.update_column :sync_job_id, RepoSyncWorker.perform_async(self.id)
-    end
+    self.update_column :sync_job_id, RepoSyncWorker.perform_async(self.id) unless current_sync_job?
   end
 end
