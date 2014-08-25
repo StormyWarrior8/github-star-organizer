@@ -1,30 +1,26 @@
-currentIntervalId = null
+class @StaredRepoController
+  constructor: ->
+    @currentInterval = null
+    @initalizeTags()
+    @bindInterval()
+    $(document).on 'ajax:success', 'a.sync-button', (event, data)=> @bindInterval()
 
-$(document).ready ->
-  if $('#stared_repos-index').exists()
-    initalizeTags()
-    $(document).on 'ajax:success', 'a.sync-button', (event, data)->
-      currentIntervalId = setInterval(updateList, 1000)
+  initalizeTags: =>
+    sendTagForm = (value)-> $(@).closest('form').submit()
 
-    currentIntervalId = setInterval(updateList, 1000)
+    $('.repo-tags').tagsInput
+      autocomplete_url: @routeTo('tags-autocomplete-path'),
+      height: '45px',
+      width: '450px',
+      onAddTag: sendTagForm,
+      onRemoveTag: sendTagForm
 
-updateList = ->
-  $('.sync-button').enableLoader()
-  $.getJSON $('#js-routes-helper').data('stared-repos-path'), (data)->
-    $('#stared-repos').html(data.list_html)
-    initalizeTags()
+  updateList: =>
+    $.getJSON @routeTo('stared-repos-path'), (data)=>
+      $('#stared-repos').html(data.list_html)
+      @initalizeTags()
+      $('.sync-button').toggleLoader(data.is_sync_job_running)
+      clearInterval(@currentInterval) unless data.is_sync_job_running
 
-    unless data.is_sync_job_running
-      $('.sync-button').disableLoader()
-      clearInterval(currentIntervalId)
-      console.log currentIntervalId
-
-initalizeTags = ->
-  sendTagForm = (value)-> $(this).closest('form').submit()
-
-  $('.repo-tags').tagsInput
-    autocomplete_url: $('#js-routes-helper').data('tags-autocomplete-path'),
-    height: '45px',
-    width: '450px',
-    onAddTag: sendTagForm,
-    onRemoveTag: sendTagForm
+  bindInterval: => @currentInterval = setInterval(@updateList, 1000)
+  routeTo: (path)-> $('#js-routes-helper').data(path)
