@@ -8,3 +8,5 @@ $.fn.enableLoader = ->
 $.fn.disableLoader = ->
   @.prev('.ajax-loader').remove()
   @.show()
+
+$.fn.toggleLoader = (toggle)-> if toggle then @.enableLoader() else @.disableLoader()
