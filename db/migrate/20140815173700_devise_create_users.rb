@@ -36,6 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Other
       t.string :name
+      t.string :sync_job_id
 
       t.timestamps
     end

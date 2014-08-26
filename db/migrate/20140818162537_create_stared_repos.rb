@@ -16,7 +16,8 @@ class CreateStaredRepos < ActiveRecord::Migration
       t.text    :readme_html
 
       t.datetime :pushed_at
-      t.datetime :synced_at
+      t.datetime :first_commit_at
+      t.datetime :starred_at
 
       t.timestamps
     end
