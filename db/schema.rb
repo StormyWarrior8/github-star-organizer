@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822122415) do
+ActiveRecord::Schema.define(version: 20140820163660) do
 
   create_table "stared_repos", force: true do |t|
     t.integer  "user_id"
@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(version: 20140822122415) do
     t.text     "description"
     t.text     "readme_html"
     t.datetime "pushed_at"
-    t.datetime "synced_at"
+    t.datetime "first_commit_at"
+    t.datetime "starred_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,9 +67,9 @@ ActiveRecord::Schema.define(version: 20140822122415) do
     t.string   "github_uid"
     t.string   "github_username"
     t.string   "name"
+    t.string   "sync_job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sync_job_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

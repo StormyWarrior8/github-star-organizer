@@ -1,4 +1,7 @@
 class StaredRepo < ActiveRecord::Base
+  ## Constants
+  REMOTE_ATTRS = %i(name full_name description homepage ssh_url html_url stargazers_count pushed_at)
+
   ## Third-party extension
   acts_as_taggable_on :tags
 
@@ -18,7 +21,20 @@ class StaredRepo < ActiveRecord::Base
   ## Attributes
   attr_accessor :user_tag_list
 
+  ## Class methods
+  class << self
+    def create_from_remote data
+      self.where(remote_id: data[:id]).first_or_initialize.tap do |repo|
+        repo.assign_attributes data.to_h.slice(*REMOTE_ATTRS)
+        repo.first_commit_at = data[:created_at]
+        repo.starred_at = data[:updated_at]
+        repo.save
+      end
+    end
+  end
 
+
+  ## Instance methods
   def user_tag_list
     self.tags.map(&:name).join(', ')
   end
