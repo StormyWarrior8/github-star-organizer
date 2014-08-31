@@ -1,6 +1,7 @@
 %h1
   Starred repositories
-  
+  -#= link_to sync_stared_repos_path, data: { remote: true, method: :put }, class: 'sync-button' do
+  -#  %span.glyphicon.glyphicon-refresh
 %ul#stared-repos.list-group
   %li.list-group-item.row{"ng-repeat"=>"repo in stared_repos"}
     .col-xs-2
@@ -9,6 +10,7 @@
     .col-xs-4
       {{repo.description}}
     .col-xs-5
+      %input.repo-tags{:type=>"text"}
       //= form_for stared_repo, data: { remote: true } do |f|
       //  = f.text_field :user_tag_list, class: 'repo-tags'
     .col-xs-1

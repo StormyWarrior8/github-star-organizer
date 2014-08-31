@@ -1,11 +1,10 @@
 angular.module("Organizer")
-.controller 'MainController',  ["$scope", "$http", ($scope, $http) ->
+.controller 'MainController',  ["$scope", "StaredReposService", ($scope, StaredReposService) ->
 
-  loadStaredRepos = ->
-    $http.get('./stared_repos.json').success((data) ->
-      console.log data
-      $scope.stared_repos = data
+  getStaredRepos = ->
+    StaredReposService.query().then((stared_repos) ->
+      $scope.stared_repos =  stared_repos
     )
 
-  loadStaredRepos()
+  getStaredRepos()
 ]
