@@ -31,5 +31,7 @@ module GithubStarOrganizer
 
     # config.sass.preferred_syntax = :sass
     config.autoload_paths += %W(#{config.root}/app/workers)
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'templates')
   end
 end

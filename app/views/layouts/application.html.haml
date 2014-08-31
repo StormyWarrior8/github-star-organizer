@@ -1,5 +1,4 @@
-!!!
-%html
+%html{"ng-app"=>"Organizer"}
   %head
     %title Github star organizer
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
@@ -8,7 +7,5 @@
   %body{ id: [controller_name, action_name].join('-') }
     = render 'layouts/header'
     .header-spacer
-    .container
-      = yield :title if content_for? :title
-      = yield
+    = yield
     #js-routes-helper{ data: js_routes }

@@ -1,4 +1,7 @@
 class StaredReposController < ApplicationController
+
+  respond_to :json
+
   def index
     @stared_repos = current_user.stared_repos.includes(:tags)
   end

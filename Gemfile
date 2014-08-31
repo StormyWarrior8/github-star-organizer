@@ -21,6 +21,7 @@ gem 'jbuilder'
 
 gem 'sidekiq', '~> 3.0'
 gem 'sidekiq-status', '~> 0.5.0'
+gem 'angularjs-rails'
 
 group :development do
   gem 'spring'

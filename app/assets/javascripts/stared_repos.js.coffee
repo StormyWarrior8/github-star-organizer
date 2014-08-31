@@ -1,4 +1,4 @@
-class @StaredRepoController
+###class @StaredRepoController
   constructor: ->
     @currentInterval = null
     @initalizeTags()
@@ -23,4 +23,4 @@ class @StaredRepoController
       clearInterval(@currentInterval) unless data.is_sync_job_running
 
   bindInterval: => @currentInterval = setInterval(@updateList, 1000)
-  routeTo: (path)-> $('#js-routes-helper').data(path)
+  routeTo: (path)-> $('#js-routes-helper').data(path)###

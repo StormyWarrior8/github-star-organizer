@@ -1,8 +1,10 @@
-= content_for :title do
-  %h1
-    Starred repositories
-    = link_to sync_stared_repos_path, data: { remote: true, method: :put }, class: 'sync-button' do
-      %span.glyphicon.glyphicon-refresh
-
-%ul#stared-repos.list-group
-  = render @stared_repos
+.container{"ng-view"=>""}
+-#.container{"ng-controller"=>"MainController"}
+-#  %h1
+-#    Starred repositories
+-#    = link_to sync_stared_repos_path, data: { remote: true, method: :put }, class: 'sync-button' do
+-#      %span.glyphicon.glyphicon-refresh
+-#        {{my}}
+-#
+-#  %ul#stared-repos.list-group
+-#    = render @stared_repos
