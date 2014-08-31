@@ -1,0 +1,14 @@
+%ul#stared-repos.list-group
+  %li.list-group-item.row{"ng-repeat"=>"repo in stared_repos"}
+    .col-xs-2
+      {{repo.name}}, stared_repo.html_url, target: :'_blank'
+      %a {"ng-href"=>repo.html_url} {{repo.name}}
+    .col-xs-4
+      {{repo.description}}
+    .col-xs-5
+      //= form_for stared_repo, data: { remote: true } do |f|
+      //  = f.text_field :user_tag_list, class: 'repo-tags'
+    .col-xs-1
+      %span.badge
+        %span.glyphicon.glyphicon-star
+        {{repo.stargazers_count}}
