@@ -23,6 +23,7 @@ gem 'sidekiq', '~> 3.0'
 gem 'sidekiq-status', '~> 0.5.0'
 gem 'angularjs-rails'
 gem 'angularjs-rails-resource', '~> 1.1.1'
+gem 'angular_rails_csrf'
 
 group :development do
   gem 'spring'

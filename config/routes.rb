@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     #TODO: configure for production later
     mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 
-    resources :stared_repos, only: [:index, :update] do
+    resources :stared_repos, only: [:index, :update, :show] do
       collection do
         get :tag_list
         put :sync

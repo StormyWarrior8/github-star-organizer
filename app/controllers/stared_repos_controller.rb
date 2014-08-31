@@ -12,6 +12,10 @@ class StaredReposController < ApplicationController
     render nothing: true
   end
 
+  def show
+    @stared_repo = StaredRepo.find(params[:id])
+  end
+
   def sync
     current_user.start_sync_job
     render nothing: true

@@ -10,10 +10,9 @@
     .col-xs-4
       {{repo.description}}
     .col-xs-5
-      %input.repo-tags{:type=>"text"}
-      //= form_for stared_repo, data: { remote: true } do |f|
-      //  = f.text_field :user_tag_list, class: 'repo-tags'
+      %form{:data=>{:remote=>"true"}, "ng-submit"=>"updateRepo(repo.id, $index)"}
+        %input.repo-tags{"ng-model"=>"repo.userTagList"}
     .col-xs-1
       %span.badge
         %span.glyphicon.glyphicon-star
-        {{repo.stargazers_count}}
+        {{repo.stargazersCount}}

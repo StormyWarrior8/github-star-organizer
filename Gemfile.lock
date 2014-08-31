@@ -30,6 +30,8 @@ GEM
     acts-as-taggable-on (3.3.0)
       activerecord (>= 3, < 5)
     addressable (2.3.6)
+    angular_rails_csrf (1.0.1)
+      rails (>= 3, < 5)
     angularjs-rails (1.2.22)
     angularjs-rails-resource (1.1.1)
     arel (5.0.1.20140414130214)
@@ -299,6 +301,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  angular_rails_csrf
   angularjs-rails
   angularjs-rails-resource (~> 1.1.1)
   better_errors
